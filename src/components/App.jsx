@@ -1,3 +1,11 @@
+import { Route, Routes } from 'react-router-dom';
+
 export const App = () => {
-  return <div>React homework template test</div>;
+  return <Routes>
+    <Route path='' element={<Home/>}>
+      <Route path='' element={}/>
+      <Route path='' element={}/>
+      <Route path='' element={}/>
+    </Route>
+  </Routes>;
 };
