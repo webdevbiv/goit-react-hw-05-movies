@@ -4,21 +4,17 @@ import { useParams } from 'react-router-dom';
 import { getMovieById } from 'services/API';
 
 function MovieDetails() {
-  const { id } = useParams();
+  const { movieId } = useParams();
   const [details, setDetails] = useState(null);
-  useEffect(() => {
-    if (!id) return;
-    getMovieById(id).then(res => {
-      setDetails(res.data);
-      console.log(details);
-    });
-  }, [id]);
 
-  return (
-    <>
-      <MovieDetailsCard />
-    </>
-  );
+  useEffect(() => {
+    getMovieById(movieId).then(res => {
+      setDetails(res.data);
+      console.log(res.data);
+    });
+  }, [movieId]);
+
+  return <>{details && <MovieDetailsCard details={details} />}</>;
 }
 
 export default MovieDetails;

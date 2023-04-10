@@ -11,7 +11,7 @@ function Movies() {
     if (submit.length !== 0) {
       getMovie(submit).then(res => {
         setResult(res.data.results);
-        console.log(res.data.results);
+        // console.log(res.data.results);
       });
     }
   }, [submit]);

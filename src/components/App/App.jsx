@@ -16,7 +16,7 @@ export const App = () => {
             <Route path='/movies/:movieId/reviews' element={}/> */}
           </Route>
         </Route>
-        {/* <Route path="*" element={<Navigate to="/" replace={true} />} /> */}
+        <Route path="*" element={<Navigate to="/" replace={true} />} />
       </Routes>
     </>
   );
