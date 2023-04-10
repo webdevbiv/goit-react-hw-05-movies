@@ -1,3 +1,4 @@
+import MovieDetails from 'pages/MovieDetails';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import Home from 'pages/Home';
 import Movies from 'pages/Movies';
@@ -10,11 +11,12 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="/movies" element={<Movies />} />
-          {/* <Route path='/movies/:movieId' element={}/>
-      <Route path='/movies/:movieId/cast' element={}/>
-      <Route path='/movies/:movieId/reviews' element={}/> */}
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
+            {/* <Route path='/movies/:movieId/cast' element={}/>
+            <Route path='/movies/:movieId/reviews' element={}/> */}
+          </Route>
         </Route>
-        <Route path="*" element={<Navigate to="/" replace={true} />} />
+        {/* <Route path="*" element={<Navigate to="/" replace={true} />} /> */}
       </Routes>
     </>
   );

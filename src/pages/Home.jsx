@@ -1,20 +1,21 @@
-import TrandingList from 'components/TrandingList/TrandingList';
+import MoviesList from 'components/MoviesList/MoviesList';
 import React, { useEffect, useState } from 'react';
-import { getTranding } from 'services/API';
+import { getTrending } from 'services/API';
 
 function Home() {
-  const [trandingMovies, setTrandingMovies] = useState([]);
-  useEffect(() => {
-    getTranding().then(data => setTrandingMovies(data.results));
+  const [trendingMovies, setTrendingMovies] = useState(null);
 
-    // return () => {
-    //   second;
-    // };
+  useEffect(() => {
+    getTrending().then(res => {
+      setTrendingMovies(res.data.results);
+      console.log(res.data.results);
+    });
   }, []);
 
   return (
     <main>
-      <TrandingList data={trandingMovies} />
+      <h1>Trending today</h1>
+      {trendingMovies && <MoviesList data={trendingMovies} />}
     </main>
   );
 }

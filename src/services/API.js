@@ -1,13 +1,20 @@
 import axios from 'axios';
 
-const AUTH_TOKEN = 'd8cb8b6f5e99c996ad5ccfb4a147e0bb';
+const AUTH_TOKEN = 'api_key=d8cb8b6f5e99c996ad5ccfb4a147e0bb';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
-export const getTranding = async () => {
-  const { data } = await axios.get(
-    `https://api.themoviedb.org/3/trending/movie/day?api_key=${AUTH_TOKEN}`
-  );
-  console.log(data);
+export const getTrending = async () => {
+  const data = await axios.get(`/trending/movie/day?${AUTH_TOKEN}`);
+  return data;
+};
+
+export const getMovie = async submit => {
+  const data = await axios.get(`/search/movie?${AUTH_TOKEN}&query=${submit}`);
+  return data;
+};
+
+export const getMovieById = async id => {
+  const data = await axios.get(`/movie/${id}?${AUTH_TOKEN}`);
   return data;
 };
