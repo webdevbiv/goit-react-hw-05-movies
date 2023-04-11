@@ -18,7 +18,7 @@ function Reviews() {
         <ul>
           {reviews.map((item, index) => (
             <li key={index}>
-              <div>{item.author}</div>
+              <div>Author: {item.author}</div>
               <div>{item.content}</div>
             </li>
           ))}

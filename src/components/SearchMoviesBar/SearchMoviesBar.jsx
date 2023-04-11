@@ -15,7 +15,6 @@ function SearchMoviesBar({ onSubmit }) {
 
   return (
     <>
-      <h1>SearchMovies</h1>
       <form id="search" onSubmit={handleSubmit}>
         <input type="text" onChange={handleCange}></input>
         <button
@@ -25,7 +24,7 @@ function SearchMoviesBar({ onSubmit }) {
           autoFocus
           placeholder="Search for Movies"
         >
-          X
+          Search
         </button>
       </form>
     </>

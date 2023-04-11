@@ -27,6 +27,7 @@ function MovieDetails() {
           {' '}
           <GoBackButton to={backLinkHref.current} />
           <MovieDetailsCard details={details} />
+          <div>Additional information</div>
           <ul>
             <li>
               <Link to="Cast">Cast</Link>
