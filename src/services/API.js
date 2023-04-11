@@ -20,3 +20,10 @@ export const getMovieById = async id => {
   const data = await axios.get(`/movie/${id}?${AUTH_TOKEN}&language=en-US`);
   return data;
 };
+
+export const getCast = async id => {
+  const data = await axios.get(
+    `/movie/${id}/credits?${AUTH_TOKEN}&language=en-US`
+  );
+  return data;
+};

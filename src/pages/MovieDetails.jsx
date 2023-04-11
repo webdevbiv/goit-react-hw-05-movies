@@ -1,6 +1,6 @@
 import MovieDetailsCard from 'components/MovieDetailsCard/MovieDetailsCard';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import { getMovieById } from 'services/API';
 
 function MovieDetails() {
@@ -14,7 +14,20 @@ function MovieDetails() {
     });
   }, [movieId]);
 
-  return <>{details && <MovieDetailsCard details={details} />}</>;
+  return (
+    <>
+      {details && <MovieDetailsCard details={details} />}
+      <ul>
+        <li>
+          <Link to="Cast">Cast</Link>
+        </li>
+        <li>
+          <Link to="Reviews">Reviews</Link>
+        </li>
+      </ul>
+      <Outlet />
+    </>
+  );
 }
 
 export default MovieDetails;
