@@ -30,10 +30,10 @@ function MovieDetails() {
           <div>Additional information</div>
           <ul>
             <li>
-              <Link to="Cast">Cast</Link>
+              <Link to="cast">Cast</Link>
             </li>
             <li>
-              <Link to="Reviews">Reviews</Link>
+              <Link to="reviews">Reviews</Link>
             </li>
           </ul>
           <Suspense fallback={<div>Loading...</div>}>

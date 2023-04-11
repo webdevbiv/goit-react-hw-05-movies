@@ -1,23 +1,24 @@
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchMoviesBar from 'components/SearchMoviesBar/SearchMoviesBar';
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { getMovie } from 'services/API';
 
 function Movies() {
-  const [submit, setSubmit] = useState('');
   const [result, setResult] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    if (submit.length !== 0) {
-      getMovie(submit).then(res => {
+    if (searchParams.length !== 0) {
+      getMovie(searchParams).then(res => {
         setResult(res.data.results);
         // console.log(res.data.results);
       });
     }
-  }, [submit]);
+  }, [searchParams]);
 
   const handleSubmit = data => {
-    return setSubmit(data);
+    return setSearchParams(data);
   };
 
   return (
