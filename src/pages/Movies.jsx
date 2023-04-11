@@ -12,7 +12,6 @@ function Movies() {
     if (searchParams.length !== 0) {
       getMovie(searchParams).then(res => {
         setResult(res.data.results);
-        // console.log(res.data.results);
       });
     }
   }, [searchParams]);
