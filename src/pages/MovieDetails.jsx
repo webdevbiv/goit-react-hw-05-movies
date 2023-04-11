@@ -1,31 +1,45 @@
+import GoBackButton from 'components/GoBackButton/GoBackButton';
 import MovieDetailsCard from 'components/MovieDetailsCard/MovieDetailsCard';
-import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'services/API';
 
 function MovieDetails() {
   const { movieId } = useParams();
   const [details, setDetails] = useState(null);
+  const location = useLocation();
+  const backLinkHref = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     getMovieById(movieId).then(res => {
       setDetails(res.data);
-      console.log(res.data);
     });
   }, [movieId]);
 
+  if (!details) {
+    return null;
+  }
+
   return (
     <>
-      {details && <MovieDetailsCard details={details} />}
-      <ul>
-        <li>
-          <Link to="Cast">Cast</Link>
-        </li>
-        <li>
-          <Link to="Reviews">Reviews</Link>
-        </li>
-      </ul>
-      <Outlet />
+      {details && (
+        <>
+          {' '}
+          <GoBackButton to={backLinkHref.current} />
+          <MovieDetailsCard details={details} />
+          <ul>
+            <li>
+              <Link to="Cast">Cast</Link>
+            </li>
+            <li>
+              <Link to="Reviews">Reviews</Link>
+            </li>
+          </ul>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
+        </>
+      )}
     </>
   );
 }

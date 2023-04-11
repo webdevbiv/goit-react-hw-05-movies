@@ -1,5 +1,6 @@
 import React from 'react';
 import { IMG_BASE_URL } from 'services/API';
+import placeHolderImg from '../../img/no-image.png';
 
 function MovieDetailsCard({ details }) {
   const {
@@ -12,31 +13,34 @@ function MovieDetailsCard({ details }) {
     vote_average,
   } = details;
 
+  const formatDate = release_date.slice(0, 4);
+  const formatUserScore = vote_average.toFixed(1);
+
   return (
     <>
-      {title}
+      <div>
+        <img
+          src={poster_path ? `${IMG_BASE_URL}${poster_path}` : placeHolderImg}
+          alt={original_title}
+          height="100px"
+        />
+      </div>
       <div>
         <div>
-          <img
-            src={`${IMG_BASE_URL}${poster_path}`}
-            alt={original_title}
-            height="100px"
-          />
+          <span>{title}</span>
+          <span>({formatDate})</span>
         </div>
-        <div>
-          <div>
-            <span>{title}</span>
-            <span>{release_date}</span>
-          </div>
-          <div>User Score: {vote_average}</div>
-          <div>Overview</div>
-          <div>{overview}</div>
-          <div>Genres</div>
-          <div>
-            {genres &&
-              genres.map((item, index) => <div key={index}>{item.name}</div>)}
-          </div>
-        </div>
+        <div>User Score: {formatUserScore}</div>
+        <div>Overview</div>
+        <div>{overview}</div>
+        <div>Genres</div>
+        {genres && (
+          <ul>
+            {genres.map((item, index) => (
+              <li key={index}>{item.name}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );

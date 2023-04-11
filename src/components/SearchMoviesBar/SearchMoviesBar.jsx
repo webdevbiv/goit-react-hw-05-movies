@@ -9,6 +9,7 @@ function SearchMoviesBar({ onSubmit }) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    e.target.reset();
     return onSubmit(userInput.trim());
   };
 

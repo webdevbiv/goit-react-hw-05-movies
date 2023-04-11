@@ -8,7 +8,6 @@ function Home() {
   useEffect(() => {
     getTrending().then(res => {
       setTrendingMovies(res.data.results);
-      console.log(res.data.results);
     });
   }, []);
 

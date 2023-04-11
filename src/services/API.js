@@ -27,3 +27,10 @@ export const getCast = async id => {
   );
   return data;
 };
+
+export const getReviews = async id => {
+  const data = await axios.get(
+    `/movie/${id}/reviews?${AUTH_TOKEN}&language=en-US`
+  );
+  return data;
+};
