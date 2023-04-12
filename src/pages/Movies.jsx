@@ -7,17 +7,18 @@ import { getMovie } from 'services/API';
 function Movies() {
   const [result, setResult] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
 
   useEffect(() => {
-    if (searchParams.length !== 0) {
-      getMovie(searchParams).then(res => {
-        setResult(res.data.results);
-      });
-    }
-  }, [searchParams]);
+    if (query === '' || !query) return;
+
+    getMovie(query).then(res => {
+      setResult(res.data.results);
+    });
+  }, [query]);
 
   const handleSubmit = data => {
-    return setSearchParams(data);
+    return setSearchParams({ query: data });
   };
 
   return (
